@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#05080d"/>
+  <path d="M32 8l18 7v13c0 12.5-7.6 21.6-18 26C21.6 49.6 14 40.5 14 28V15l18-7z" fill="none" stroke="#00ff9c" stroke-width="2.5"/>
+  <path d="M32 14l12 4.7V28c0 8.8-5.2 15.4-12 18.9-6.8-3.5-12-10.1-12-18.9v-9.3L32 14z" fill="rgba(0,255,156,0.08)"/>
+  <text x="32" y="36" font-family="monospace" font-size="15" font-weight="bold" fill="#00ff9c" text-anchor="middle">AB</text>
+  <line x1="22" y1="44" x2="42" y2="44" stroke="#00d4ff" stroke-width="1.5">
+    <animate attributeName="x1" values="20;44;20" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="x2" values="28;52;28" dur="2.5s" repeatCount="indefinite"/>
+  </line>
+</svg>

@@ -1,0 +1,129 @@
+/* ============================================================
+   animations.css — keyframes, glitch, signature effects
+   ============================================================ */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes sweep {
+  0% { top: -45%; }
+  55% { top: 105%; }
+  100% { top: 105%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: .4; r: 3.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(.7); opacity: .9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes glitchPulse {
+  0% { transform: translate(0); filter: none; }
+  25% { transform: translate(-3px, 1px); filter: hue-rotate(60deg); }
+  50% { transform: translate(3px, -1px); }
+  75% { transform: translate(-2px, -1px); filter: hue-rotate(-40deg); }
+  100% { transform: translate(0); filter: none; }
+}
+
+@keyframes glitchClipA {
+  0% { clip-path: inset(12% 0 76% 0); transform: translate(-3px, -2px); }
+  20% { clip-path: inset(52% 0 24% 0); transform: translate(3px, 1px); }
+  40% { clip-path: inset(78% 0 4% 0); transform: translate(-3px, 2px); }
+  60% { clip-path: inset(30% 0 58% 0); transform: translate(3px, -1px); }
+  80% { clip-path: inset(64% 0 18% 0); transform: translate(-2px, 1px); }
+  100% { clip-path: inset(12% 0 76% 0); transform: translate(0); }
+}
+
+@keyframes glitchClipB {
+  0% { clip-path: inset(66% 0 16% 0); transform: translate(3px, 2px); }
+  20% { clip-path: inset(8% 0 82% 0); transform: translate(-3px, -1px); }
+  40% { clip-path: inset(40% 0 44% 0); transform: translate(3px, -2px); }
+  60% { clip-path: inset(84% 0 2% 0); transform: translate(-3px, 1px); }
+  80% { clip-path: inset(22% 0 68% 0); transform: translate(2px, -2px); }
+  100% { clip-path: inset(66% 0 16% 0); transform: translate(0); }
+}
+
+@keyframes heroEnter {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- glitch on name (hover / focus) ---------- */
+.glitch { position: relative; display: inline-block; }
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--danger);
+  text-shadow: 2px 0 var(--danger);
+}
+
+.glitch::after {
+  color: var(--accent-2);
+  text-shadow: -2px 0 var(--accent-2);
+}
+
+.glitch:hover::before,
+.glitch:focus-visible::before {
+  opacity: .85;
+  animation: glitchClipA .4s steps(2, end) infinite;
+}
+
+.glitch:hover::after,
+.glitch:focus-visible::after {
+  opacity: .85;
+  animation: glitchClipB .4s steps(2, end) infinite;
+}
+
+.glitch:hover { animation: glitchPulse .3s steps(2) 1; }
+
+/* ---------- reduced motion: kill all looping signature effects ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .boot-skip,
+  .status-dot,
+  .radar-head::after,
+  .scroll-hint svg { animation: none; }
+
+  .photo-glow,
+  .photo-ring,
+  .radar-sweep,
+  .radar .node,
+  .scan-sweep,
+  .float-tag,
+  .tl-dot::after,
+  .glitch:hover,
+  .glitch:hover::before,
+  .glitch:hover::after { animation: none; }
+
+  .glitch::before, .glitch::after { display: none; }
+
+  .boot { display: none !important; }
+}

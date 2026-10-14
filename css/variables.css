@@ -1,0 +1,53 @@
+/* ============================================================
+   variables.css — palette, typography, theme tokens
+   ============================================================ */
+:root {
+  /* colors */
+  --bg-0: #05080d;
+  --bg-1: #0a1018;
+  --bg-2: #101a26;
+  --line: #1c2b3a;
+  --text: #d7e3ee;
+  --muted: #7d93a8;
+  --accent: #00ff9c;
+  --accent-2: #00d4ff;
+  --warn: #ffb020;
+  --danger: #ff3b5c;
+  --glow: 0 0 12px rgba(0, 255, 156, .45);
+  --glow-soft: 0 0 24px rgba(0, 255, 156, .12);
+  --glow-cyan: 0 0 12px rgba(0, 212, 255, .4);
+
+  /* typography */
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  /* layout */
+  --nav-h: 64px;
+  --status-h: 34px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --container: 1200px;
+  --gap: clamp(1rem, 3vw, 2rem);
+
+  /* motion */
+  --ease: cubic-bezier(.22, .8, .3, 1);
+  --fast: .2s;
+  --med: .45s;
+}
+
+/* ---------- Light theme ---------- */
+[data-theme="light"] {
+  --bg-0: #f4f7fa;
+  --bg-1: #ffffff;
+  --bg-2: #ffffff;
+  --line: #d5dee8;
+  --text: #17222e;
+  --muted: #56697c;
+  --accent: #007a50; /* darkened from #008a5a for AA text contrast on light bg */
+  --accent-2: #0077b6;
+  --warn: #b45309;
+  --danger: #d62946;
+  --glow: 0 0 10px rgba(0, 138, 90, .3);
+  --glow-soft: 0 6px 24px rgba(15, 40, 70, .08);
+  --glow-cyan: 0 0 10px rgba(0, 119, 182, .3);
+}

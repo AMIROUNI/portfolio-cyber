@@ -1,0 +1,125 @@
+/* ============================================================
+   base.css — reset, typography, global scaffolding
+   ============================================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 10px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg-0);
+  min-height: 100vh;
+  padding-bottom: var(--status-h);
+  overflow-x: hidden;
+  transition: background var(--med) var(--ease), color var(--med) var(--ease);
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button, input, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+ul { padding: 0; list-style: none; }
+
+.mono, .mono * { font-family: var(--font-mono); }
+
+.accent { color: var(--accent); }
+.prompt { color: var(--accent); margin-right: .35em; }
+
+::selection { background: var(--accent); color: var(--bg-0); }
+
+/* focus visibility — AA keyboard support */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-0); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ---------- layout helpers ---------- */
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+  position: relative;
+}
+
+.section-alt { background: linear-gradient(180deg, transparent, rgba(0, 212, 255, .025) 40%, transparent); }
+
+[data-theme="light"] .section-alt { background: linear-gradient(180deg, transparent, rgba(0, 119, 182, .05) 40%, transparent); }
+
+/* ---------- section headers ---------- */
+.sec-head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+
+.sec-kicker {
+  color: var(--accent-2);
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.sec-title {
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+
+.sec-title .prompt { color: var(--accent); }
+
+/* ---------- language switch fade ---------- */
+main { transition: opacity .22s ease; }
+
+html.lang-switching main { opacity: .3; }
+
+/* ---------- reveal on scroll ---------- */
+.reveal,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay: var(--d, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal { transform: translateY(26px); }
+.reveal-left { transform: translateX(-32px); }
+.reveal-right { transform: translateX(32px); }
+
+.in { opacity: 1 !important; transform: none !important; }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+  .matrix-rain, .cursor-glow, .scanlines { display: none !important; }
+}
